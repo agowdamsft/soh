@@ -22,6 +22,7 @@ namespace FunctionApp1
             FullCreateRatingObj fo = new FullCreateRatingObj();
 
             DocumentDBRepository<FullCreateRatingObj>.Initialize();
+            string pingURL = "https://serverlessohlondonuser.azurewebsites.net/";
 
             // parse query parameter
             string name = req.GetQueryNameValuePairs()
@@ -40,7 +41,7 @@ namespace FunctionApp1
                 dynamic body = await req.Content.ReadAsStringAsync();
                 var e = JsonConvert.DeserializeObject<CreateRatingObj>(body as string);
                 //Check if these are valid entries
-                var client = new RestClient("https://serverlessohlondonproduct.azurewebsites.net/");
+                var client = new RestClient(pingURL);
                 // client.Authenticator = new HttpBasicAuthenticator(username, password);
 
                 var request = new RestRequest("api/GetProduct", Method.GET);
@@ -63,7 +64,7 @@ namespace FunctionApp1
                 }
                 else
                 {
-                    var client2 = new RestClient("https://serverlessohlondonuser.azurewebsites.net/");
+                    var client2 = new RestClient(pingURL);
                     // client.Authenticator = new HttpBasicAuthenticator(username, password);
 
                     var request2 = new RestRequest("api/GetUser", Method.GET);

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace FunctionApp1
 {
+    //this will hold alllocal models
     class Helpers
     {
     }
